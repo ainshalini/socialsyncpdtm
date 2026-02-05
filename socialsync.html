@@ -1,0 +1,1307 @@
+CORRECT
+
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SocialSync</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'DM Sans', sans-serif;
+    }
+    
+    .title-font {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%);
+    }
+    
+    .card-gradient {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.98) 100%);
+      backdrop-filter: blur(10px);
+    }
+    
+    .accent-gradient {
+      background: linear-gradient(135deg, #3b82f6 0%, #3b82f6 100%);
+    }
+    
+    .input-style {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(203, 213, 225, 0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .input-style:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+      outline: none;
+      background: white;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6 0%, #3b82f6 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(6, 182, 212, 0.3);
+    }
+    
+    .btn-primary:disabled {
+      opacity: 0.6;
+      transform: none;
+      cursor: not-allowed;
+    }
+    
+    .checkbox-custom {
+      accent-color: #3b82f6;
+    }
+    
+    .scroll-container {
+      scrollbar-width: thin;
+      scrollbar-color: #3b82f6 #e2e8f0;
+    }
+    
+    .scroll-container::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .scroll-container::-webkit-scrollbar-track {
+      background: #e2e8f0;
+      border-radius: 3px;
+    }
+    
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: #3b82f6;
+      border-radius: 3px;
+    }
+    
+    /* Make section buttons clickable */
+    .section-btn {
+      cursor: pointer;
+      user-select: none;
+    }
+    
+    .section-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    /* Print Styles */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      
+      #print-content, #print-content * {
+        visibility: visible;
+      }
+      
+      #print-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 20px;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      
+      .no-print {
+        display: none !important;
+      }
+      
+      button, input, textarea, select {
+        display: none !important;
+      }
+      
+      .print-section {
+        page-break-inside: avoid;
+        margin-bottom: 25px;
+        padding: 20px;
+        border: 1px solid #cbd5e1;
+        border-radius: 0;
+        background: white;
+      }
+      
+      .print-header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #1e40af;
+      }
+      
+      .print-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #1e40af;
+        margin: 10px 0 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      .print-subtitle {
+        color: #64748b;
+        margin: 0 0 15px;
+        font-size: 14px;
+      }
+      
+      .print-field {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed #e2e8f0;
+      }
+      
+      .print-field:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      
+      .print-label {
+        font-weight: bold;
+        color: #1e293b;
+        margin-bottom: 4px;
+        font-size: 13px;
+      }
+      
+      .print-value {
+        color: #334155;
+        font-size: 13px;
+        line-height: 1.4;
+      }
+      
+      .print-checklist {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 8px;
+      }
+      
+      .print-checklist-item {
+        flex: 1 1 45%;
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .print-checkbox {
+        width: 16px;
+        height: 16px;
+        border: 1px solid #94a3b8;
+        display: inline-block;
+        position: relative;
+      }
+      
+      .print-checkbox.checked::after {
+        content: "✓";
+        position: absolute;
+        top: -2px;
+        left: 2px;
+        color: #1e40af;
+        font-weight: bold;
+        font-size: 14px;
+      }
+      
+      .print-metrics {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      
+      .print-metrics th,
+      .print-metrics td {
+        padding: 8px 10px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      
+      .print-metrics th {
+        background: #f8fafc;
+        font-weight: bold;
+        color: #1e293b;
+        width: 50%;
+      }
+      
+      .print-metrics td {
+        color: #334155;
+      }
+      
+      .print-footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #cbd5e1;
+        text-align: center;
+        color: #64748b;
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body class="h-full gradient-bg text-slate-800">
+  <div id="app" class="h-full flex flex-col overflow-hidden">
+    <!-- Header -->
+    <header class="flex-shrink-0 px-6 py-4 border-b border-slate-200 bg-white/50 backdrop-blur-sm">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 accent-gradient rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <h1 id="app-title" class="title-font text-xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">SocialSync</h1>
+            <p id="app-tagline" class="text-xs text-slate-600">Event & Programme Management System</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2 text-sm text-slate-600">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full pulse-dot"></span>
+            <span id="record-count">Loading...</span>
+          </div>
+          <!-- Print Button -->
+          <button id="print-btn" class="px-4 py-2 bg-cyan-100 hover:bg-cyan-200 border border-cyan-200 rounded-lg text-sm font-medium transition-all flex items-center gap-2 text-cyan-700 no-print">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            Print Report
+          </button>
+          <button id="view-records-btn" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg text-sm font-medium transition-all flex items-center gap-2 text-slate-700 no-print">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+            View Records
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-auto scroll-container p-6">
+      <div class="max-w-6xl mx-auto">
+        <!-- Section Selection -->
+        <div class="bg-white rounded-xl p-6 mb-6 border border-slate-200">
+          <h2 class="title-font text-lg font-semibold text-cyan-600 mb-4">Select Report Type</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <button type="button" class="section-btn p-4 border-2 border-slate-200 rounded-lg text-center hover:border-cyan-400 hover:bg-cyan-50 transition-all" data-section="ip2m1-1">
+              <div class="font-semibold text-slate-700">BULETIN DAERAH</div>
+              <div class="text-sm text-slate-600">Programme Details</div>
+            </button>
+            <button type="button" class="section-btn p-4 border-2 border-slate-200 rounded-lg text-center hover:border-cyan-400 hover:bg-cyan-50 transition-all" data-section="ip2m1-2">
+              <div class="font-semibold text-slate-700">IP2M1</div>
+              <div class="text-sm text-slate-600">Community Engagement Index</div>
+            </button>
+            <button type="button" class="section-btn p-4 border-2 border-slate-200 rounded-lg text-center hover:border-cyan-400 hover:bg-cyan-50 transition-all" data-section="ip3m2">
+              <div class="font-semibold text-slate-700">IP3M2</div>
+              <div class="text-sm text-slate-600">Event Management Effectiveness Index</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Form Container -->
+        <form id="main-form" class="card-gradient rounded-2xl border border-slate-200 shadow-xl hidden">
+          <!-- Programme Info Section -->
+          <div class="p-6 border-b border-slate-200">
+            <h2 class="title-font text-lg font-semibold text-cyan-600 mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              Programme Information
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="p-5 space-y-4">
+                <!-- DAERAH Dropdown -->
+                <div>
+                  <h4 class="text-sm font-semibold text-blue-600 mb-3">Pilih Daerah</h4>
+                  <select id="daerah-dropdown" class="w-full px-4 py-3 rounded-lg input-style text-slate-800">
+                    <option value="">-- Pilih Daerah --</option>
+                    <option value="Pejabat Residen Bahagian Mukah">Pejabat Residen Bahagian Mukah</option>
+                    <option value="Pejabat Daerah Mukah">Pejabat Daerah Mukah</option>
+                    <option value="Pejabat Daerah Dalat">Pejabat Daerah Dalat</option>
+                    <option value="Pejabat Daerah Matu">Pejabat Daerah Matu</option>
+                    <option value="Pejabat Daerah Daro">Pejabat Daerah Daro</option>
+                    <option value="Pejabat Daerah Tanjung Manis">Pejabat Daerah Tanjung Manis</option>
+                    <option value="Pejabat Daerah Kecil Balingian">Pejabat Daerah Kecil Balingian</option>
+                    <option value="Pejabat Daerah Kecil Oya">Pejabat Daerah Kecil Oya</option>
+                    <option value="Pejabat Daerah Kecil Igan">Pejabat Daerah Kecil Igan</option>
+                  </select>
+                </div>
+
+              <div>
+                <label for="programme" class="block text-sm font-medium text-slate-700 mb-1">Programme Name</label>
+                <input type="text" id="programme" class="w-full px-4 py-3 rounded-lg input-style text-slate-800 placeholder-slate-400" placeholder="Enter programme name">
+              </div>
+              <div>
+                <label for="date" class="block text-sm font-medium text-slate-700 mb-1">Date</label>
+                <input type="date" id="date" class="w-full px-4 py-3 rounded-lg input-style text-slate-800">
+              </div>
+              <div>
+                <label for="organizer" class="block text-sm font-medium text-slate-700 mb-1">Organizer</label>
+                <input type="text" id="organizer" class="w-full px-4 py-3 rounded-lg input-style text-slate-800 placeholder-slate-400" placeholder="Enter organizer">
+              </div>
+            </div>
+          </div>
+
+          <!-- Sections Container -->
+          <div id="sections-container" class="space-y-4 p-6">
+            <!-- BULETIN DAERAH Section -->
+            <div id="section-ip2m1-1" class="hidden bg-white rounded-xl border border-blue-200 overflow-hidden">
+              <div class="section-header p-5 bg-gradient-to-r from-blue-50 to-blue-50 border-b border-blue-100">
+                <h3 class="text-md font-semibold text-blue-700 flex items-center justify-between">
+                  <span class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    BULETIN DAERAH
+                  </span>
+                  <span class="text-sm font-normal text-blue-600">Community Engagement Report</span>
+                </h3>
+              </div>
+              
+                <!-- Programme Details -->
+                <div class="space-y-4">
+                  <div>
+                    <label for="ip1-tempat" class="block text-sm text-slate-700 mb-1">Tempat dan Kapasiti</label>
+                    <input type="text" id="ip1-tempat" class="w-full px-4 py-3 rounded-lg input-style text-slate-800 placeholder-slate-400" placeholder="Venue and capacity">
+                  </div>
+                  <div>
+                    <label for="ip1-deskripsi" class="block text-sm text-slate-700 mb-1">Deskripsi/Tujuan Program</label>
+                    <input type="text" id="ip1-deskripsi" class="w-full px-4 py-3 rounded-lg input-style text-slate-800 placeholder-slate-400" placeholder="Programme descriptions an Purpose">
+                  </div>
+                  <div>
+                    <label for="ip1-objektif" class="block text-sm text-slate-700 mb-1">Objektif</label>
+                    <input type="text" id="ip1-objektif" class="w-full px-4 py-3 rounded-lg input-style text-slate-800 placeholder-slate-400" placeholder="Programme objectives">
+                  </div>
+                  <div>
+                    <label for="ip1-impak" class="block text-sm text-slate-700 mb-1">Impak Program</label>
+                    <input type="text" id="ip1-impak" class="w-full px-4 py-3 rounded-lg input-style text-slate-800 placeholder-slate-400" placeholder="Programme impact">
+                  </div>
+                </div>
+
+                <!-- Attendance Info -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm text-slate-700 mb-1">Tetamu Kehormat</label>
+                    <div id="vip-guests-container" class="space-y-2">
+                    <!-- Initial guest field -->
+                    <div class="flex gap-2">
+                        <input type="text" name="vip_guest[]" class="flex-1 px-4 py-3 rounded-lg input-style text-slate-800 placeholder-slate-400" placeholder="Nama tetamu kehormat">
+                        <button type="button" class="px-3 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700" onclick="addVipGuest()">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                        </button>
+                    </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="ip1-bil-tetamu" class="block text-sm text-slate-700 mb-1">Bilangan Tetamu Yang Hadir</label>
+                    <input type="number" id="ip1-bil-tetamu" min="0" class="w-full px-4 py-3 rounded-lg input-style text-slate-800" placeholder="Number of attendees">
+                </div>
+                <div class="md:col-span-2">
+                    <label for="ip1-pihak-media" class="block text-sm text-slate-700 mb-1">Pihak Media Yang Hadir</label>
+                    <input type="text" id="ip1-pihak-media" name="ip1-pihak-media" rows="2" class="w-full px-4 py-3 rounded-lg input-style text-slate-800 placeholder-slate-400" placeholder="Media present at the event">
+                </div>
+                </div>
+                <!-- Gambar Program -->
+                <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                  <h4 class="text-md font-semibold text-blue-700 mb-4">Gambar Program / Tangkap Layar Media</h4>
+                  <p class="text-sm text-slate-600 mb-3">Muat naik gambar aktiviti program atau tangkapan skrin liputan media.</p>
+                  <div class="flex flex-col gap-3">
+                    <label for="ip2m1-1-images" class="block text-sm text-slate-700">
+                      Pilih satu atau lebih fail gambar (JPEG, PNG)
+                    </label>
+                    <input 
+                      type="file" 
+                      id="ip2m1-1-images" 
+                      class="w-full px-4 py-2 rounded-lg input-style text-slate-800"
+                      accept="image/jpeg,image/png,image/jpg"
+                      multiple
+                    >
+                    <div id="ip2m1-1-image-preview" class="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-2">
+                    Sokongan: JPG, PNG. Saiz maksimum disyorkan: 5MB setiap fail.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- IP2M1:2 Section -->
+            <div id="section-ip2m1-2" class="hidden bg-white rounded-xl border border-blue-200 overflow-hidden">
+              <div class="section-header p-5 bg-gradient-to-r from-blue-50 to-blue-50 border-b border-blue-100">
+                <h3 class="text-md font-semibold text-blue-700 flex items-center justify-between">
+                  <span class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    IP2M1 - Community Engagement Index
+                  </span>
+                  <span class="text-sm font-normal text-blue-600">Performance & Feedback Analysis</span>
+                </h3>
+              </div>
+              <div class="p-5 space-y-6">
+                <!-- Section A: Information Sharing -->
+                <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                  <h4 class="text-md font-semibold text-blue-700 mb-4">A. Information Sharing and Publication (100%)</h4>
+                  
+                  <!-- Media Cetak -->
+                  <div class="mb-4">
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                      <input type="checkbox" id="media-cetak-checkbox" class="w-5 h-5 rounded checkbox-custom">
+                      <span class="text-slate-700 font-medium group-hover:text-slate-900 transition-colors">Media Cetak (Print Media)</span>
+                    </label>
+                    <input 
+                      type="text" 
+                      id="media-cetak-example" 
+                      class="w-full mt-2 px-4 py-2 rounded-lg input-style text-slate-800 placeholder-slate-400"
+                      placeholder="e.g., Surat jemputan, Newspaper name"
+                      disabled
+                    >
+                  </div>
+
+                  <!-- Media Elektronik -->
+                  <div class="mb-4">
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                      <input type="checkbox" id="media-elektronik-checkbox" class="w-5 h-5 rounded checkbox-custom">
+                      <span class="text-slate-700 font-medium group-hover:text-slate-900 transition-colors">Media Elektronik (Electronic Media)</span>
+                    </label>
+                    <input 
+                      type="text" 
+                      id="media-elektronik-example" 
+                      class="w-full mt-2 px-4 py-2 rounded-lg input-style text-slate-800 placeholder-slate-400"
+                      placeholder="e.g., TV3, RTM"
+                      disabled
+                    >
+                  </div>
+
+                  <!-- Media Digital -->
+                  <div class="mb-4">
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                      <input type="checkbox" id="media-digital-checkbox" class="w-5 h-5 rounded checkbox-custom">
+                      <span class="text-slate-700 font-medium group-hover:text-slate-900 transition-colors">Media Digital (Digital Media)</span>
+                    </label>
+                    <input 
+                      type="text" 
+                      id="media-digital-example" 
+                      class="w-full mt-2 px-4 py-2 rounded-lg input-style text-slate-800 placeholder-slate-400"
+                      placeholder="e.g., Facebook, Instagram, Website"
+                      disabled
+                    >
+                  </div>
+
+                  <div class="mt-4 p-3 bg-white rounded-lg border border-blue-200">
+                    <p class="text-sm text-slate-700">Percentage of Channel Coverage: <span id="media-coverage" class="text-cyan-600 font-semibold">0%</span></p>
+                    <p class="text-xs text-slate-500 mt-1">1 channel = 80%, 2 channels = 90%, 3 channels = 100%</p>
+                  </div>
+                </div>
+
+                <!-- Section B: Survey -->
+                <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                  <h4 class="text-md font-semibold text-blue-700 mb-2">B. Borang Kaji Selidik Kepuasan Pelanggan</h4>
+                  <p class="text-xs text-slate-600 mb-3">Lampiran A2/Survey Management System - Program Komuniti</p>
+                  <div class="p-3 bg-white rounded-lg border border-blue-200">
+                    <p class="text-sm text-slate-700 mb-1">Survey Satisfaction: <span id="survey-percent-display" class="text-cyan-600 font-semibold">0%</span></p>
+                    <p class="text-xs text-slate-500">Calculated as: (Crowd Size / Target Group) × 100%</p>
+                  </div>
+                </div>
+
+                <!-- Section C: Participation -->
+                <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                  <h4 class="text-md font-semibold text-blue-700 mb-4">C. Participant Involvement (100%)</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label for="crowd-size" class="block text-sm text-slate-700 mb-1">Crowd Size (Actual Attendance)</label>
+                      <input type="number" id="crowd-size" min="0" class="w-full px-4 py-3 rounded-lg input-style text-slate-800" placeholder="Enter number" value="0">
+                    </div>
+                    <div>
+                      <label for="target-group" class="block text-sm text-slate-700 mb-1">Target Group (Capacity)</label>
+                      <input type="number" id="target-group" min="0" class="w-full px-4 py-3 rounded-lg input-style text-slate-800" placeholder="Enter number" value="0">
+                    </div>
+                  </div>
+                  <div class="mt-4 p-3 bg-white rounded-lg border border-cyan-200">
+                    <p class="text-sm text-slate-700">Mark: <span id="participant-percent" class="text-cyan-600 font-semibold">0%</span></p>
+                    <p class="text-xs text-slate-500">(Crowd Size / Target Group) × 100% (max 100%)</p>
+                  </div>
+                </div>
+
+                <!-- Total Score -->
+                <div class="bg-gradient-to-r from-cyan-50 to-cyan-50 rounded-xl p-5 border border-cyan-200">
+                  <h4 class="text-md font-semibold text-cyan-700 mb-2">Total Score</h4>
+                  <p class="text-3xl font-bold text-slate-800"><span id="total-ip2m1-2">0</span>%</p>
+                  <p class="text-sm text-slate-600 mt-2">(Average of Media Coverage + Survey Satisfaction + Participant Involvement)</p>
+                </div>
+
+                <!-- Supporting Documents -->
+                <div class="bg-cyan-50 rounded-xl p-5 border border-cyan-100">
+                  <h4 class="text-md font-semibold text-cyan-700 mb-4">Checklist for Supporting Documents (Softcopy)</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <label class="flex items-center gap-3 cursor-pointer group p-2 rounded-lg hover:bg-white/50 transition-colors">
+                      <input type="checkbox" id="doc-kertas-kerja" class="w-5 h-5 rounded checkbox-custom">
+                      <span class="text-slate-700 group-hover:text-slate-900 transition-colors">Kertas kerja program / slide pembentangan</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group p-2 rounded-lg hover:bg-white/50 transition-colors">
+                      <input type="checkbox" id="doc-surat-mesyuarat" class="w-5 h-5 rounded checkbox-custom">
+                      <span class="text-slate-700 group-hover:text-slate-900 transition-colors">Surat mesyuarat penyelarasan / jemputan program</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group p-2 rounded-lg hover:bg-white/50 transition-colors">
+                      <input type="checkbox" id="doc-laporan-kpi" class="w-5 h-5 rounded checkbox-custom">
+                      <span class="text-slate-700 group-hover:text-slate-900 transition-colors">Laporan selepas program - borang KPI IP2M1-1</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group p-2 rounded-lg hover:bg-white/50 transition-colors">
+                      <input type="checkbox" id="doc-gambar" class="w-5 h-5 rounded checkbox-custom">
+                      <span class="text-slate-700 group-hover:text-slate-900 transition-colors">Gambar program / tangkap layar media</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group p-2 rounded-lg hover:bg-white/50 transition-colors md:col-span-2">
+                      <input type="checkbox" id="doc-laporan-sms" class="w-5 h-5 rounded checkbox-custom">
+                      <span class="text-slate-700 group-hover:text-slate-900 transition-colors">Laporan Maklum Balas dari Survey Management System (SMS)</span>
+                    </label>
+                  </div>
+                  
+                  <!-- PDF Upload -->
+                  <div class="mt-4 pt-4 border-t border-cyan-200">
+                    <label for="supporting-docs-pdf" class="block text-sm font-medium text-slate-700 mb-2">
+                      Upload Supporting Documents (PDF)
+                    </label>
+                    <input 
+                      type="file" 
+                      id="supporting-docs-pdf" 
+                      class="w-full px-4 py-2 rounded-lg input-style text-slate-800"
+                      accept=".pdf"
+                      multiple
+                    >
+                    <p class="text-xs text-slate-500 mt-1">
+                      Upload PDF files for supporting documents (max 10MB each)
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Gambar Program -->
+                <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                  <h4 class="text-md font-semibold text-blue-700 mb-4">Gambar Program / Tangkap Layar Media</h4>
+                  <p class="text-sm text-slate-600 mb-3">Muat naik gambar aktiviti program atau tangkapan skrin liputan media.</p>
+                  <div class="flex flex-col gap-3">
+                    <label for="ip2m1-2-images" class="block text-sm text-slate-700">
+                      Pilih satu atau lebih fail gambar (JPEG, PNG)
+                    </label>
+                    <input 
+                      type="file" 
+                      id="ip2m1-2-images" 
+                      class="w-full px-4 py-2 rounded-lg input-style text-slate-800"
+                      accept="image/jpeg,image/png,image/jpg"
+                      multiple
+                    >
+                    <div id="ip2m1-2-image-preview" class="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-2">
+                    Sokongan: JPG, PNG. Saiz maksimum disyorkan: 5MB setiap fail.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- IP3M2 Section -->
+            <div id="section-ip3m2" class="hidden bg-white rounded-xl border border-blue-200 overflow-hidden">
+              <div class="section-header p-5 bg-gradient-to-r from-blue-50 to-blue-50 border-b border-blue-100">
+                <h3 class="text-md font-semibold text-blue-700 flex items-center justify-between">
+                  <span class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    IP3M2 - Event Management Effectiveness Index
+                  </span>
+                  <span class="text-sm font-normal text-blue-600">Economic Impact & ROI</span>
+                </h3>
+              </div>
+              <div class="p-5 space-y-6">
+                <!-- Promotion & Outreach -->
+                <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                  <h4 class="text-md font-semibold text-blue-700 mb-4">Promotion & Outreach (Media Coverage)</h4>
+                  <div class="space-y-4">
+                    <div>
+                      <label for="ip3-media-list" class="block text-sm text-slate-700 mb-1">List of Media</label>
+                      <textarea id="ip3-media-list" rows="3" class="w-full px-4 py-3 rounded-lg input-style text-slate-800 placeholder-slate-400" placeholder="Enter media outlets (one per line)"></textarea>
+                      <p class="text-xs text-slate-500 mt-1">Requires at least 3 media outlets for 100% coverage</p>
+                    </div>
+                    <div class="p-3 bg-white rounded-lg border border-blue-200">
+                      <p class="text-sm text-slate-700">Percentage of Media Coverage: <span id="ip3-media-percent" class="text-blue-600 font-semibold">0%</span></p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Participation (FIXED ORDER) -->
+                <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                  <h4 class="text-md font-semibold text-blue-700 mb-4">Participation</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label for="ip3-actual-attendance" class="block text-sm text-slate-700 mb-1">Actual Attendance</label>
+                      <input type="number" id="ip3-actual-attendance" min="0" class="w-full px-4 py-3 rounded-lg input-style text-slate-800" placeholder="Enter number" value="0">
+                    </div>
+                    <div>
+                      <label for="ip3-target-attendance" class="block text-sm text-slate-700 mb-1">Target Attendance</label>
+                      <input type="number" id="ip3-target-attendance" min="0" class="w-full px-4 py-3 rounded-lg input-style text-slate-800" placeholder="Enter number" value="0">
+                    </div>
+                  </div>
+                  <div class="mt-4 p-3 bg-white rounded-lg border border-blue-200">
+                    <p class="text-sm text-slate-700">Mark: <span id="ip3-participation-percent" class="text-blue-600 font-semibold">0%</span></p>
+                    <p class="text-xs text-slate-500">(Actual Attendance / Target Attendance) × 100% (max 100%)</p>
+                  </div>
+                </div>
+
+                <!-- Satisfaction -->
+                <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                  <h4 class="text-md font-semibold text-blue-700 mb-4">Participant Satisfaction Level</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label for="ip3-total-respondent" class="block text-sm text-slate-700 mb-1">Total Respondent</label>
+                      <input type="number" id="ip3-total-respondent" min="0" class="w-full px-4 py-3 rounded-lg input-style text-slate-800" placeholder="Enter number" value="0">
+                    </div>
+                    <div>
+                      <label for="ip3-positive-respondent" class="block text-sm text-slate-700 mb-1">Positive Respondent</label>
+                      <input type="number" id="ip3-positive-respondent" min="0" class="w-full px-4 py-3 rounded-lg input-style text-slate-800" placeholder="Enter number" value="0">
+                    </div>
+                  </div>
+                  <div class="mt-4 p-3 bg-white rounded-lg border border-blue-200">
+                    <p class="text-sm text-slate-700">Percentages of Response Positively: <span id="ip3-satisfaction-percent" class="text-blue-600 font-semibold">0%</span></p>
+                    <p class="text-xs text-slate-500">(Positive Respondent / Total Respondent) × 100%</p>
+                  </div>
+                </div>
+
+                <!-- Economic Generation -->
+                <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                  <h4 class="text-md font-semibold text-blue-700 mb-4">Economic Generation</h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label for="ip3-revenue" class="block text-sm text-slate-700 mb-1">Revenue (RM)</label>
+                      <input type="number" id="ip3-revenue" min="0" step="0.01" class="w-full px-4 py-3 rounded-lg input-style text-slate-800" placeholder="Enter amount" value="0">
+                    </div>
+                    <div>
+                      <label for="ip3-modal" class="block text-sm text-slate-700 mb-1">Modal (RM)</label>
+                      <input type="number" id="ip3-modal" min="0" step="0.01" class="w-full px-4 py-3 rounded-lg input-style text-slate-800" placeholder="Enter amount" value="0">
+                    </div>
+                  </div>
+                  <div class="mt-4 p-3 bg-white rounded-lg border border-blue-200">
+                    <p class="text-sm text-slate-700">ROI: <span id="ip3-roi-percent" class="text-blue-600 font-semibold">0%</span></p>
+                    <p class="text-xs text-slate-500">(Revenue - Modal) / Modal × 100%</p>
+                  </div>
+                </div>
+
+                <!-- Gambar Program -->
+                <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                  <h4 class="text-md font-semibold text-blue-700 mb-4">Gambar Program / Tangkap Layar Media</h4>
+                  <p class="text-sm text-slate-600 mb-3">Muat naik gambar aktiviti program atau tangkapan skrin liputan media.</p>
+                  <div class="flex flex-col gap-3">
+                    <label for="ip3m2-images" class="block text-sm text-slate-700">
+                      Pilih satu atau lebih fail gambar (JPEG, PNG)
+                    </label>
+                    <input 
+                      type="file" 
+                      id="ip3m2-images" 
+                      class="w-full px-4 py-2 rounded-lg input-style text-slate-800"
+                      accept="image/jpeg,image/png,image/jpg"
+                      multiple
+                    >
+                    <div id="ip3m2-image-preview" class="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-2">
+                    Sokongan: JPG, PNG. Saiz maksimum disyorkan: 5MB setiap fail.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="p-6 border-t border-slate-200">
+            <button type="submit" id="submit-btn" class="w-full btn-primary py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-2 no-print">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Submit Report</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- Print Modal -->
+  <div id="print-modal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4 no-print">
+    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden">
+      <div class="p-6 border-b border-slate-200">
+        <h3 class="text-lg font-semibold text-slate-800">Select Sections to Print</h3>
+        <p class="text-sm text-slate-600 mt-1">Choose which report sections you want to include.</p>
+      </div>
+      <div class="p-6 space-y-4">
+        <label class="flex items-center gap-3 cursor-pointer group">
+          <input type="checkbox" id="print-ip2m1-1" class="w-5 h-5 rounded checkbox-custom">
+          <span class="text-slate-700 font-medium group-hover:text-slate-900 transition-colors">BULETIN DAERAH</span>
+        </label>
+        <label class="flex items-center gap-3 cursor-pointer group">
+          <input type="checkbox" id="print-ip2m1-2" class="w-5 h-5 rounded checkbox-custom">
+          <span class="text-slate-700 font-medium group-hover:text-slate-900 transition-colors">IP2M1:2 - Performance Metrics</span>
+        </label>
+        <label class="flex items-center gap-3 cursor-pointer group">
+          <input type="checkbox" id="print-ip3m2" class="w-5 h-5 rounded checkbox-custom">
+          <span class="text-slate-700 font-medium group-hover:text-slate-900 transition-colors">IP3M2 - Economic & Media Analysis</span>
+        </label>
+      </div>
+      <div class="p-6 border-t border-slate-200 flex gap-3">
+        <button id="print-cancel" class="flex-1 px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700 font-medium">
+          Cancel
+        </button>
+        <button id="print-confirm" class="flex-1 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 rounded-lg text-white font-medium flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          Print
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Logic -->
+  <script>
+    function num(val) {
+      const n = parseFloat(val);
+      return isNaN(n) ? 0 : n;
+    }
+
+    // Calculations
+    function updateIP2M1_2() {
+      const mediaCetak = document.getElementById('media-cetak-checkbox').checked;
+      const mediaElektronik = document.getElementById('media-elektronik-checkbox').checked;
+      const mediaDigital = document.getElementById('media-digital-checkbox').checked;
+      const channels = [mediaCetak, mediaElektronik, mediaDigital].filter(Boolean).length;
+      let mediaCoverage = 0;
+      if (channels === 1) mediaCoverage = 80;
+      else if (channels === 2) mediaCoverage = 90;
+      else if (channels >= 3) mediaCoverage = 100;
+      document.getElementById('media-coverage').textContent
+      const crowdSize = num(document.getElementById('crowd-size').value);
+      const targetGroup = num(document.getElementById('target-group').value);
+      const surveyPercent = targetGroup > 0 ? Math.min(100, (crowdSize / targetGroup) * 100) : 0;
+      const formatted = surveyPercent.toFixed(1);
+      document.getElementById('survey-percent-display').textContent = formatted + '%';
+      document.getElementById('participant-percent').textContent = formatted + '%';
+      const totalScore = (mediaCoverage + surveyPercent + surveyPercent) / 3;
+      document.getElementById('total-ip2m1-2').textContent = totalScore.toFixed(1);
+    }
+
+    function updateIP3M2() {
+      const mediaList = document.getElementById('ip3-media-list').value.trim();
+      const mediaCount = mediaList ? mediaList.split(/\r?\n/).filter(line => line.trim() !== '').length : 0;
+      document.getElementById('ip3-media-percent').textContent = (mediaCount >= 3 ? 100 : 0) + '%';
+
+      const ip3Actual = num(document.getElementById('ip3-actual-attendance').value);
+      const ip3Target = num(document.getElementById('ip3-target-attendance').value);
+      const ip3Participation = ip3Target > 0 ? Math.min(100, (ip3Actual / ip3Target) * 100) : 0;
+      document.getElementById('ip3-participation-percent').textContent = ip3Participation.toFixed(1) + '%';
+
+      const totalRespondent = num(document.getElementById('ip3-total-respondent').value);
+      const positiveRespondent = num(document.getElementById('ip3-positive-respondent').value);
+      const satisfaction = totalRespondent > 0 ? (positiveRespondent / totalRespondent) * 100 : 0;
+      document.getElementById('ip3-satisfaction-percent').textContent = satisfaction.toFixed(1) + '%';
+
+      const revenue = num(document.getElementById('ip3-revenue').value);
+      const modal = num(document.getElementById('ip3-modal').value);
+      let roi = 0;
+      if (modal > 0) roi = ((revenue - modal) / modal) * 100;
+      const roiDisplay = isFinite(roi) ? roi.toFixed(1) : '∞';
+      document.getElementById('ip3-roi-percent').textContent = roiDisplay + '%';
+    }
+    
+    function addVipGuest() {
+      const container = document.getElementById('vip-guests-container');
+      const newField = document.createElement('div');
+      newField.className = 'flex gap-2';
+      newField.innerHTML = `
+        <input type="text" name="vip_guest[]" class="flex-1 px-4 py-3 rounded-lg input-style text-slate-800 placeholder-slate-400" placeholder="Nama tetamu kehormat">
+        <button type="button" class="px-3 bg-red-100 hover:bg-red-200 rounded-lg text-red-700" onclick="this.parentElement.remove()">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+        </button>
+      `;
+      container.appendChild(newField);
+    }
+
+    // Base64 conversion
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          const base64 = reader.result.split(',')[1];
+          resolve({ name: file.name, mimeType: file.type, data: base64 });
+        };
+        reader.onerror = reject;
+      });
+    }
+
+// Fetch record count from Google Sheet
+async function fetchRecordCount() {
+  try {
+    // ✅ CORRECT WEB APP URL WITH ?count=1 (NO TRAILING SPACES)
+    const response = await fetch('https://script.google.com/macros/s/AKfycbxxhtF-dr2LUpjJS06cd9inPVLprsrqYjS0kMfPiXpifUfNES9NjRX1PWTz7a9YwR3iwA/exec?count=1');
+    const data = await response.json();
+    document.getElementById('record-count').textContent = `${data.count} Records`;
+  } catch (error) {
+    console.error("Failed to fetch record count:", error);
+    document.getElementById('record-count').textContent = "0 Records";
+  }
+}
+
+// Submit handler
+async function submitForm(e) {
+  e.preventDefault(); // Prevent page reload
+
+  const btn = document.getElementById('submit-btn');
+  const originalHTML = btn.innerHTML;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span>Saving...</span>';
+
+  try {
+    // Get selected section
+    const selectedSection = document.querySelector('.section-btn.border-cyan-400')?.dataset.section;
+    if (!selectedSection) {
+      alert('❌ Please select a report type.');
+      return;
+    }
+
+    // Combine selected media channels with examples
+    const selectedMedia = [];
+    if (document.getElementById('media-cetak-checkbox')?.checked) {
+      const example = document.getElementById('media-cetak-example')?.value.trim();
+      selectedMedia.push(`Media Cetak (Print Media): ${example || 'N/A'}`);
+    }
+    if (document.getElementById('media-elektronik-checkbox')?.checked) {
+      const example = document.getElementById('media-elektronik-example')?.value.trim();
+      selectedMedia.push(`Media Elektronik (Electronic Media): ${example || 'N/A'}`);
+    }
+    if (document.getElementById('media-digital-checkbox')?.checked) {
+      const example = document.getElementById('media-digital-example')?.value.trim();
+      selectedMedia.push(`Media Digital (Digital Media): ${example || 'N/A'}`);
+    }
+    const selectedMediaText = selectedMedia.join(', ');
+
+    // Combine selected supporting docs
+    const selectedDocs = [
+      document.getElementById('doc-kertas-kerja')?.checked ? 'Kertas kerja program / slide pembentangan' : '',
+      document.getElementById('doc-surat-mesyuarat')?.checked ? 'Surat mesyuarat penyelarasan / jemputan program' : '',
+      document.getElementById('doc-laporan-kpi')?.checked ? 'Laporan selepas program - borang KPI IP2M1-1' : '',
+      document.getElementById('doc-gambar')?.checked ? 'Gambar program / tangkap layar media' : '',
+      document.getElementById('doc-laporan-sms')?.checked ? 'Laporan Maklum Balas dari Survey Management System (SMS)' : ''
+    ].filter(Boolean).join(', ');
+
+    // Collect all Tetamu Kehormat from dynamic fields
+    const vipGuestInputs = document.querySelectorAll('input[name="vip_guest[]"]');
+    const vipGuestValues = Array.from(vipGuestInputs)
+      .map(input => input.value.trim())
+      .filter(value => value !== '');
+    const vipGuestText = vipGuestValues.join(', ');
+
+    const formData = {
+      programme_name: document.getElementById('programme').value,
+      programme_date: document.getElementById('date').value,
+      organizer: document.getElementById('organizer').value,
+      daerah: document.getElementById('daerah-dropdown')?.value || '',
+      venue_capacity: document.getElementById('ip1-tempat')?.value || '',
+      description: document.getElementById('ip1-deskripsi')?.value || '',
+      objective: document.getElementById('ip1-objektif')?.value || '',
+      impact: document.getElementById('ip1-impak')?.value || '',
+      vip_guest: vipGuestText,
+      total_attendance: document.getElementById('ip1-bil-tetamu')?.value || '',
+      selected_media_channels: selectedMediaText,
+      media_coverage_percent: parseFloat(document.getElementById('media-coverage')?.textContent) || 0,
+      crowd_size: document.getElementById('crowd-size')?.value || 0,
+      target_group: document.getElementById('target-group')?.value || 0,
+      survey_participation_percent: parseFloat(document.getElementById('survey-percent-display')?.textContent) || 0,
+      total_ip2m1_score: parseFloat(document.getElementById('total-ip2m1-2')?.textContent) || 0,
+      selected_supporting_docs: selectedDocs,
+      ip3_media_list: document.getElementById('ip3-media-list')?.value || '',
+      ip3_media_percent: parseFloat(document.getElementById('ip3-media-percent')?.textContent) || 0,
+      ip3_actual_attendance: document.getElementById('ip3-actual-attendance')?.value || 0,
+      ip3_target_attendance: document.getElementById('ip3-target-attendance')?.value || 0,
+      ip3_participation_percent: parseFloat(document.getElementById('ip3-participation-percent')?.textContent) || 0,
+      ip3_total_respondent: document.getElementById('ip3-total-respondent')?.value || 0,
+      ip3_positive_respondent: document.getElementById('ip3-positive-respondent')?.value || 0,
+      ip3_satisfaction_percent: parseFloat(document.getElementById('ip3-satisfaction-percent')?.textContent) || 0,
+      revenue_rm: document.getElementById('ip3-revenue')?.value || 0,
+      modal_rm: document.getElementById('ip3-modal')?.value || 0,
+      roi_percent: parseFloat(document.getElementById('ip3-roi-percent')?.textContent) || 0
+    };
+
+    // Process images based on selected section
+    const imageFiles = {
+      'ip2m1-1': document.getElementById('ip2m1-1-images')?.files || [],
+      'ip2m1-2': document.getElementById('ip2m1-2-images')?.files || [],
+      'ip3m2': document.getElementById('ip3m2-images')?.files || []
+    };
+    
+    const images = [];
+    const selectedImages = imageFiles[selectedSection] || [];
+    for (let i = 0; i < selectedImages.length; i++) {
+      images.push(await fileToBase64(selectedImages[i]));
+    }
+
+    // Process PDFs (only for IP2M1:2)
+    const pdfs = [];
+    if (selectedSection === 'ip2m1-2') {
+      const pdfFiles = document.getElementById('supporting-docs-pdf')?.files || [];
+      for (let i = 0; i < pdfFiles.length; i++) {
+        pdfs.push(await fileToBase64(pdfFiles[i]));
+      }
+    }
+
+    // ✅ CORRECT WEB APP URL (NO TRAILING SPACES!)
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxxhtF-dr2LUpjJS06cd9inPVLprsrqYjS0kMfPiXpifUfNES9NjRX1PWTz7a9YwR3iwA/exec';
+
+    // ✅ PROPER FETCH WITH RESPONSE HANDLING
+    const response = await fetch(WEB_APP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ formData, images, pdfs })
+    });
+
+    if (response.ok) {
+      alert('✅ Maklumat Telah Disimpan.');
+      document.getElementById('main-form').reset();
+      // Clear image previews
+      document.querySelectorAll('[id$="-image-preview"]').forEach(el => el.innerHTML = '');
+      if (selectedSection === 'ip2m1-2') {
+        document.getElementById('supporting-docs-pdf').value = '';
+      }
+      
+      updateIP2M1_2();
+      updateIP3M2();
+      fetchRecordCount();
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('⚠️ Submission may have failed. Check browser console.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+  }
+}
+
+// Add new VIP guest field
+function addVipGuest() {
+  const container = document.getElementById('vip-guests-container');
+  const newField = document.createElement('div');
+  newField.className = 'flex gap-2';
+  newField.innerHTML = `
+    <input type="text" name="vip_guest[]" class="flex-1 px-4 py-3 rounded-lg input-style text-slate-800 placeholder-slate-400" placeholder="Nama tetamu kehormat">
+    <button type="button" class="px-3 bg-red-100 hover:bg-red-200 rounded-lg text-red-700" onclick="this.parentElement.remove()">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+      </svg>
+    </button>
+  `;
+  container.appendChild(newField);
+}
+
+// Section selection
+function setupSectionSelection() {
+  const sectionBtns = document.querySelectorAll('.section-btn');
+  const form = document.getElementById('main-form');
+  const sections = {
+    'ip2m1-1': document.getElementById('section-ip2m1-1'),
+    'ip2m1-2': document.getElementById('section-ip2m1-2'),
+    'ip3m2': document.getElementById('section-ip3m2')
+  };
+
+  sectionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove active state from all buttons
+      sectionBtns.forEach(b => b.classList.remove('border-cyan-400', 'bg-cyan-50'));
+      
+      // Add active state to clicked button
+      btn.classList.add('border-cyan-400', 'bg-cyan-50');
+      
+      // Show form and selected section
+      form.classList.remove('hidden');
+      Object.values(sections).forEach(section => section.classList.add('hidden'));
+      const sectionId = btn.dataset.section;
+      if (sections[sectionId]) {
+        sections[sectionId].classList.remove('hidden');
+      }
+    });
+  });
+}
+
+// Image preview
+function setupImagePreview() {
+  const imageInputs = [
+    { input: 'ip2m1-1-images', preview: 'ip2m1-1-image-preview' },
+    { input: 'ip2m1-2-images', preview: 'ip2m1-2-image-preview' },
+    { input: 'ip3m2-images', preview: 'ip3m2-image-preview' }
+  ];
+
+  imageInputs.forEach(({ input, preview }) => {
+    const inputEl = document.getElementById(input);
+    if (inputEl) {
+      inputEl.addEventListener('change', (e) => {
+        const previewEl = document.getElementById(preview);
+        previewEl.innerHTML = '';
+        Array.from(e.target.files).forEach(file => {
+          if (!file.type.match('image.*')) return;
+          const reader = new FileReader();
+          reader.onload = ev => {
+            const img = document.createElement('img');
+            img.src = ev.target.result;
+            img.className = 'w-full h-24 object-cover rounded-lg border border-slate-200';
+            previewEl.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+    }
+  });
+}
+
+// Print functionality
+    function setupPrint() {
+      const printBtn = document.getElementById('print-btn');
+      const printModal = document.getElementById('print-modal');
+      const printCancel = document.getElementById('print-cancel');
+      const printConfirm = document.getElementById('print-confirm');
+
+      // Show modal
+      printBtn.addEventListener('click', () => {
+        printModal.classList.remove('hidden');
+      });
+
+      // Hide modal
+      printCancel.addEventListener('click', () => {
+        printModal.classList.add('hidden');
+      });
+
+      // Handle print
+      printConfirm.addEventListener('click', () => {
+        const ip2m1_1 = document.getElementById('print-ip2m1-1').checked;
+        const ip2m1_2 = document.getElementById('print-ip2m1-2').checked;
+        const ip3m2 = document.getElementById('print-ip3m2').checked;
+
+        if (!ip2m1_1 && !ip2m1_2 && !ip3m2) {
+          alert('Please select at least one section to print.');
+          return;
+        }
+
+        // Create print content
+        const printContent = document.createElement('div');
+        printContent.id = 'print-content';
+        
+        // Add header
+        const programmeName = document.getElementById('programme').value || 'Programme';
+        const programmeDate = document.getElementById('date').value || 'Date';
+        const organizer = document.getElementById('organizer').value || 'Organizer';
+        
+        printContent.innerHTML = `
+          <div class="print-header">
+            <h1 class="print-title">SocialSync Official Report</h1>
+            <p class="print-subtitle">${programmeName} • ${programmeDate} • ${organizer}</p>
+          </div>
+        `;
+
+        // Function to create Q&A field
+        function createQAField(question, answer) {
+          if (!answer) return '';
+          return `
+            <div class="print-field">
+              <div class="print-label">${question}</div>
+              <div class="print-value">${answer}</div>
+            </div>
+          `;
+        }
+
+        // Add BULETIN DAERAH section
+        if (ip2m1_1) {
+          const section1 = document.createElement('div');
+          section1.className = 'print-section';
+          
+          // Collect VIP guests for print
+          const vipGuestInputs = document.querySelectorAll('input[name="vip_guest[]"]');
+          const vipGuestValues = Array.from(vipGuestInputs)
+            .map(input => input.value.trim())
+            .filter(value => value !== '');
+          const vipGuestText = vipGuestValues.join(', ');
+          
+          section1.innerHTML = `
+            <div class="print-section-header">
+              <h2 class="print-section-title">BULETIN DAERAH</h2>
+              <div class="print-section-subtitle">Community Engagement Report</div>
+            </div>
+            ${createQAField('Daerah', document.getElementById('daerah-dropdown').options[document.getElementById('daerah-dropdown').selectedIndex]?.text || '')}
+            ${createQAField('Tempat dan Kapasiti', document.getElementById('ip1-tempat').value)}
+            ${createQAField('Deskripsi/Tujuan Program', document.getElementById('ip1-deskripsi').value)}
+            ${createQAField('Objektif', document.getElementById('ip1-objektif').value)}
+            ${createQAField('Impak Program', document.getElementById('ip1-impak').value)}
+            ${createQAField('Tetamu Kehormat', vipGuestText)} <!-- ✅ USE DYNAMIC VIP GUESTS -->
+            ${createQAField('Bilangan Tetamu Yang Hadir', document.getElementById('ip1-bil-tetamu').value)}
+            ${createQAField('Pihak Media Yang Hadir', document.getElementById('ip1-pihak-media').value)}
+          `;
+          printContent.appendChild(section1);
+        }
+        
+        // Add IP2M1:2 section
+        if (ip2m1_2) {
+          const section2 = document.createElement('div');
+          section2.className = 'print-section';
+          
+          // Media channels
+          let mediaItems = [];
+          if (document.getElementById('media-cetak-checkbox').checked) {
+            mediaItems.push(document.getElementById('media-cetak-example').value || 'Media Cetak (Print Media)');
+          }
+          if (document.getElementById('media-elektronik-checkbox').checked) {
+            mediaItems.push(document.getElementById('media-elektronik-example').value || 'Media Elektronik (Electronic Media)');
+          }
+          if (document.getElementById('media-digital-checkbox').checked) {
+            mediaItems.push(document.getElementById('media-digital-example').value || 'Media Digital (Digital Media)');
+          }
+          
+          // Supporting documents
+          let docItems = [];
+          if (document.getElementById('doc-kertas-kerja').checked) docItems.push('Kertas kerja program / slide pembentangan');
+          if (document.getElementById('doc-surat-mesyuarat').checked) docItems.push('Surat mesyuarat penyelarasan / jemputan program');
+          if (document.getElementById('doc-laporan-kpi').checked) docItems.push('Laporan selepas program - borang KPI IP2M1-1');
+          if (document.getElementById('doc-gambar').checked) docItems.push('Gambar program / tangkap layar media');
+          if (document.getElementById('doc-laporan-sms').checked) docItems.push('Laporan Maklum Balas dari Survey Management System (SMS)');
+          
+          section2.innerHTML = `
+            <div class="print-section-header">
+              <h2 class="print-section-title">IP2M1:2 - Performance Metrics</h2>
+              <div class="print-section-subtitle">Performance & Feedback Analysis</div>
+            </div>
+            ${createQAField('Information Sharing Channels', mediaItems.join(', '))}
+            ${createQAField('Channel Coverage Percentage', document.getElementById('media-coverage').textContent)}
+            ${createQAField('Survey Satisfaction', document.getElementById('survey-percent-display').textContent)}
+            ${createQAField('Crowd Size (Actual Attendance)', document.getElementById('crowd-size').value)}
+            ${createQAField('Target Group (Capacity)', document.getElementById('target-group').value)}
+            ${createQAField('Participant Involvement Mark', document.getElementById('participant-percent').textContent)}
+            ${createQAField('Total Score', document.getElementById('total-ip2m1-2').textContent + '%')}
+            ${createQAField('Supporting Documents', docItems.join(', '))}
+          `;
+          printContent.appendChild(section2);
+        }
+        
+        // Add IP3M2 section
+        if (ip3m2) {
+          const section3 = document.createElement('div');
+          section3.className = 'print-section';
+          section3.innerHTML = `
+            <div class="print-section-header">
+              <h2 class="print-section-title">IP3M2 - Economic & Media Analysis</h2>
+            </div>
+            ${createQAField('List of Media', document.getElementById('ip3-media-list').value.replace(/\n/g, ', '))}
+            ${createQAField('Media Coverage Percentage', document.getElementById('ip3-media-percent').textContent)}
+            ${createQAField('Actual Attendance', document.getElementById('ip3-actual-attendance').value)}
+            ${createQAField('Target Attendance', document.getElementById('ip3-target-attendance').value)}
+            ${createQAField('Participation Mark', document.getElementById('ip3-participation-percent').textContent)}
+            ${createQAField('Total Respondent', document.getElementById('ip3-total-respondent').value)}
+            ${createQAField('Positive Respondent', document.getElementById('ip3-positive-respondent').value)}
+            ${createQAField('Satisfaction Percentage', document.getElementById('ip3-satisfaction-percent').textContent)}
+            ${createQAField('Revenue (RM)', document.getElementById('ip3-revenue').value)}
+            ${createQAField('Modal (RM)', document.getElementById('ip3-modal').value)}
+            ${createQAField('ROI', document.getElementById('ip3-roi-percent').textContent)}
+          `;
+          printContent.appendChild(section3);
+        }
+        
+        // Add footer
+        printContent.innerHTML += `
+          <div class="print-footer">
+            SocialSync Programme Management System • Official Government Document • Confidential
+          </div>
+        `;
+
+        // Temporarily add to body
+        document.body.appendChild(printContent);
+        
+        // Trigger print
+        window.print();
+        
+        // Remove after print
+        setTimeout(() => {
+          document.body.removeChild(printContent);
+          printModal.classList.add('hidden');
+        }, 100);
+      });
+
+      // Close modal when clicking outside
+      printModal.addEventListener('click', (e) => {
+        if (e.target === printModal) {
+          printModal.classList.add('hidden');
+        }
+      });
+    }
+
+    // Setup
+    document.addEventListener('DOMContentLoaded', () => {
+      // Enable media example fields when checked
+      ['media-cetak-checkbox', 'media-elektronik-checkbox', 'media-digital-checkbox'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('change', (e) => {
+            const exampleId = id.replace('-checkbox', '-example');
+            const exampleEl = document.getElementById(exampleId);
+            if (exampleEl) {
+              exampleEl.disabled = !e.target.checked;
+            }
+          });
+        }
+      });
+
+      // Attach calculation listeners
+      ['media-cetak-checkbox', 'media-elektronik-checkbox', 'media-digital-checkbox', 'crowd-size', 'target-group']
+        .forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.addEventListener('input', updateIP2M1_2);
+        });
+      ['ip3-media-list', 'ip3-actual-attendance', 'ip3-target-attendance', 'ip3-total-respondent', 'ip3-positive-respondent', 'ip3-revenue', 'ip3-modal']
+        .forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.addEventListener('input', updateIP3M2);
+        });
+
+      // Setup section selection
+      setupSectionSelection();
+
+      // Setup image preview
+      setupImagePreview();
+
+      // Handle form submission
+      document.getElementById('main-form').addEventListener('submit', submitForm);
+      
+      // View Records → open Google Sheet
+      document.getElementById('view-records-btn').addEventListener('click', () => {
+        window.open('https://docs.google.com/spreadsheets/d/1THGepNFhL6xFAoktLJqLZnKTifbjrg4xSeR-1pMa9cA/edit', '_blank');
+      });
+
+      // Initialize print functionality
+      setupPrint();
+
+      // Load record count on page start
+      fetchRecordCount();
+
+      updateIP2M1_2();
+      updateIP3M2();
+    });
+  </script>
+</body>
+</html>
